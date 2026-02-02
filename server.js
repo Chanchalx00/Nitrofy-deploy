@@ -28,7 +28,7 @@ export default {
       const handleRequest = createRequestHandler({
         // eslint-disable-next-line import/no-unresolved
         build: await import('virtual:react-router/server-build'),
-        mode: process.env.NODE_ENV,
+        mode: 'production',
         getLoadContext: () => appLoadContext,
       });
 
