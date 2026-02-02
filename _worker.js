@@ -1,4 +1,4 @@
-import * as build from './dist/server/index.js';
+import * as build from '../server/index.js';
 
 export default {
   async fetch(request, env, context) {
