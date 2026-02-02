@@ -1,8 +1,15 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 
 console.log('Creating bundled worker file...');
 
-const serverCode = readFileSync('dist/server/index.js', 'utf-8');
+const serverPath = 'dist/server/index.js';
+if (!existsSync(serverPath)) {
+  console.error(`Expected server bundle not found at ${serverPath}. Did the build produce a server bundle?`);
+  console.error('Run `npm run build` and ensure your Vite configuration (and plugins like @react-router/dev) create a server build at dist/server/index.js.');
+  process.exit(1);
+}
+
+const serverCode = readFileSync(serverPath, 'utf-8');
 
 const workerCode = `
 // Bundled server code
