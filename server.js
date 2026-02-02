@@ -2,7 +2,7 @@
 import {storefrontRedirect} from '@shopify/hydrogen';
 import {createRequestHandler} from '@shopify/remix-oxygen';
 import {createAppLoadContext} from '~/lib/context';
-import * as build from '../server/index.js';
+import * as build from 'virtual:react-router/server-build';
 /**
  * Export a fetch handler in module format.
  */
