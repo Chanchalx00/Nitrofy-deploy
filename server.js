@@ -2,7 +2,7 @@
 import {storefrontRedirect} from '@shopify/hydrogen';
 import {createRequestHandler} from '@shopify/remix-oxygen';
 import {createAppLoadContext} from '~/lib/context';
-import * as build from 'virtual:react-router/server-build';
+
 /**
  * Export a fetch handler in module format.
  */
@@ -28,7 +28,7 @@ export default {
       const handleRequest = createRequestHandler({
         // eslint-disable-next-line import/no-unresolved
         build: await import('virtual:react-router/server-build'),
-        mode: 'production',
+        mode: process.env.NODE_ENV,
         getLoadContext: () => appLoadContext,
       });
 

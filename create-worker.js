@@ -7,13 +7,13 @@ const serverCode = readFileSync('dist/server/index.js', 'utf-8');
 const workerCode = `
 // Bundled server code
 ${serverCode}
-const defaultExport = exports?.default ?? globalThis?.default;
+
 // Worker export
 export default {
   async fetch(request, env, context) {
     try {
       // Call the server's fetch handler
-      return await defaultExport.fetch(request, env, context);
+      return await handleRequest(request, env, context);
     } catch (error) {
       console.error('Worker error:', error);
       return new Response('Internal Server Error: ' + error.message, { 
