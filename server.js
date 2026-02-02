@@ -2,6 +2,7 @@
 import {storefrontRedirect} from '@shopify/hydrogen';
 import {createRequestHandler} from '@shopify/remix-oxygen';
 import {createAppLoadContext} from '~/lib/context';
+import * as build from 'virtual:react-router/server-build';
 /**
  * Export a fetch handler in module format.
  */
@@ -24,9 +25,9 @@ export default {
        * Create a Remix request handler and pass
        * Hydrogen's Storefront client to the loader context.
        */
-      const build = await import('virtual:react-router/server-build');
       const handleRequest = createRequestHandler({
-        build,
+        // eslint-disable-next-line import/no-unresolved
+        build: await import('virtual:react-router/server-build'),
         mode: 'production',
         getLoadContext: () => appLoadContext,
       });
